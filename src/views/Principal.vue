@@ -1,7 +1,9 @@
 <template>
-    <h1>
-        Principal
-    </h1>
+    <div class="contenedor_principal">
+        <div class="logo">
+            <i class="fas fa-cube"></i>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -19,5 +21,20 @@ export default {
 </script>
 
 <style>
+    .contenedor_principal{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
+        .logo{
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5em;
+        }
 </style>
