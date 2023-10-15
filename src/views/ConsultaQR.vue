@@ -50,8 +50,14 @@ export default {
             }
 
             let r = await this.obtener_data_publico(f)
-            this.nombre = r[0].attributes.nombre
-            this.precio = r[0].attributes.precio
+
+            if (r.length != 0) {
+                this.nombre = r[0].attributes.nombre
+                this.precio = r[0].attributes.precio
+            }else{
+                this.nombre = 'NO HAY REGISTRO'
+                this.precio = 0
+            }
             
         },
         ...mapActions(['obtener_data_publico'])
