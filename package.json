@@ -5,6 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "deploy": "./deploy.sh",
     "surge": "rm -rf dist && vue-cli-service build && cd dist && surge --domain tiendaisabelnegocio.surge.sh"
   },
   "dependencies": {
