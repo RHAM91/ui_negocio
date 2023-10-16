@@ -43,7 +43,7 @@ export default {
     name: 'Registro',
     data() {
         return {
-            codigo: this.$route.params.codigo,
+            codigo: this.$route.query.k,
             nombre: '',
             precio: ''
         }
