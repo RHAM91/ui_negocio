@@ -28,8 +28,13 @@
 </template>
 
 <script>
+import axios from 'axios'
+import { mapMutations, mapState } from 'vuex'
 export default {
     name: 'Login',
+    computed: {
+        ...mapState(['preferencias'])
+    },
     data() {
         return {
             usuario: '',
@@ -38,8 +43,35 @@ export default {
     },
     methods: {
         async login(){
-            
-        }
+            let formulario  = {
+                identifier: this.usuario,
+                password: this.pass
+            }
+
+            try {
+                let query = await axios.post(`${this.preferencias.IP}/api/auth/local`, formulario)
+                if (query.data.message == 'Invalid identifier or password') {
+                    alert('USUARIO Y/O CONTRASEÑA INVALIDOS_')
+                }else if(query.data.user.blocked){
+                    alert('USUARIO BLOQUEADO POR ADMINISTRADOR_')
+                }else{
+                    this.set_token_sesion(query.data.jwt)
+                    this.$router.replace('Registro')
+                }
+            } catch (e) {
+                console.log(e)
+                if (e.response.data.error.message == 'Invalid identifier or password') {
+                    alert('USUARIO O CONTRASEÑA INVALIDOS')
+                }else if(e.response.data.error.message == 'Your account has been blocked by an administrator'){
+                    alert('SISTEMA BLOQUEADO TEMPORALMENTE')
+                }else{
+                    alert('ERROR DESCONOCIDO')
+                }
+
+            }
+
+        },
+        ...mapMutations(['set_token_sesion'])
     },
 }
 </script>

@@ -11,14 +11,22 @@ const vuexPersist = new VuexPersist({
   key: 'rhomio',
   storage: window.localStorage,
   reducer: state => ({
+    token_sesion: state.token_sesion
   }) 
 })
 
 
+function showAlert(message, callback) {
+  alert(message);
+  if (callback && typeof callback === 'function') {
+    callback();
+  }
+}
+
 
 export default new Vuex.Store({
   state: {
-
+    token_sesion: '',
     preferencias:{
       IP: process.env.NODE_ENV == 'production' ? 'https://arub4.ddns.net/app/tiendaisabel' : 'http://localhost:8015',
       PUERTO: 1337
@@ -26,8 +34,21 @@ export default new Vuex.Store({
 
   },
   getters: {
+    token_sesion_formateado: state =>{
+      let token_formateado = {
+        headers:{
+          Authorization: `Bearer ${state.token_sesion}`
+        }
+      }
+
+      return token_formateado
+    }
   },
   mutations: {
+    set_token_sesion(state, data){
+      state.token_sesion = data
+    },
+
   },
   actions: {
 
