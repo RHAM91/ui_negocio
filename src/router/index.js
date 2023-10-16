@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Principal from '../views/Principal.vue'
-import ConsultaQR from '../views/ConsultaQR.vue'
+import Login from '../views/Login.vue'
 
 
 Vue.use(VueRouter)
@@ -9,21 +8,16 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '*',
-    redirect: '/principal'
+    redirect: '/login'
   },
   {
       path: '/',
-      redirect: '/principal',
+      redirect: '/login',
   },
   {
-      path: '/principal',
-      name: 'Principal',
-      component: Principal
-  },
-  {
-    path: '/consultaqr/:codigo',
-    name: 'ConsultaQR',
-    component: ConsultaQR
+      path: '/login',
+      name: 'Login',
+      component: Login
   },
 
 ]

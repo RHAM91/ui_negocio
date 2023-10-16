@@ -1,7 +1,7 @@
 <template>
     <div class="contenedor_principal">
         <div class="logo">
-            <i class="fas fa-cube"></i>
+            <i class="fas fa-bolt"></i>
         </div>
     </div>
 </template>
