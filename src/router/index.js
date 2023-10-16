@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import Registro from '../views/Registro.vue'
-
+import Principal from '../views/Principal.vue'
 
 Vue.use(VueRouter)
 
@@ -22,7 +22,15 @@ const routes = [
     
   },
   {
-    path: '/registro',
+    path: '/principal',
+    name: 'Principal',
+    component: Principal,
+    meta:{
+      autentificado: true
+    }
+  },
+  {
+    path: '/registro/:codigo',
     name: 'Registro',
     component: Registro,
     meta:{
@@ -58,7 +66,7 @@ router.beforeEach((to, from, next) =>{
   if (autorizado && !usuario) {
     next('login')
   }else if(!autorizado && usuario){
-    next('Registro')
+    next('Principal')
   }else{
     next()
   }

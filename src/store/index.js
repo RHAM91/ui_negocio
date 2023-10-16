@@ -115,6 +115,44 @@ export default new Vuex.Store({
         console.log(error)
       }
     },
+    async guardar_data({commit, state}, data){
+      try {
+        const config = {
+          method: 'post',
+          url: `${state.preferencias.IP}/api/${data.api}`,
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${state.token_sesion}`
+          },
+          data: {
+            data: data.formulario
+          }
+        }
+
+        const r = await axios(config)
+
+        if (r.status == 200) {
+          if(r.data.message){
+            minix({icon: 'info', mensaje: r.data.message, tiempo: 6000})
+          }else{
+            if (data.mensaje) {
+              minix({icon: 'success', mensaje: data.mensaje, tiempo: 3000}) 
+            }else{
+              minix({icon: 'success', mensaje: 'GUARDADO CON EXITO', tiempo: 3000}) 
+            }
+
+            return r.data
+          }
+
+        }else{
+          minix({icon: 'info', mensaje: 'HUBO UN ERROR AL GUARDAR', tiempo: 6000})
+        }
+
+      } catch (error) {
+        minix({icon: 'error', mensaje: error.message, tiempo: 6000})
+        console.warn(error)
+      }
+    },
 
   },
   plugins: [vuexPersist.plugin],

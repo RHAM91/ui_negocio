@@ -56,7 +56,7 @@ export default {
                     alert('USUARIO BLOQUEADO POR ADMINISTRADOR_')
                 }else{
                     this.set_token_sesion(query.data.jwt)
-                    this.$router.replace('Registro')
+                    this.$router.replace('Principal')
                 }
             } catch (e) {
                 console.log(e)
