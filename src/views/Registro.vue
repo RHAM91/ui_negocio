@@ -1,7 +1,7 @@
 <template>
     <div class="contenedor_">
         <div class="cabecera">
-
+            <b-button type="button" variant="danger" size="sm" @click="cerrar_sesione"><i class="fas fa-times"></i></b-button>
         </div>
         <div class="contenedor_formulario">
             <div class="formulario_registro">
@@ -64,7 +64,10 @@ export default {
             this.nombre = ''
             this.precio = ''
         },
-        ...mapActions(['guardar_data'])
+        cerrar_sesione(){
+            this.cerrar_sesion()
+        },
+        ...mapActions(['guardar_data', 'cerrar_sesion'])
     },
 }
 </script>
@@ -79,6 +82,10 @@ export default {
             width: 100%;
             height: 40px;
             background-color: rgb(68, 146, 68);
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            padding-right: 10px;
         }
 
         .contenedor_formulario{

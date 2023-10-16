@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import router from '@/router'
 import VuexPersist from 'vuex-persist'
 import axios from 'axios'
 import { minix, pregunta } from '../components/functions/alertas'
@@ -153,7 +154,25 @@ export default new Vuex.Store({
         console.warn(error)
       }
     },
+    cerrar_sesion({commit, state}){
+      pregunta({titulo: 'Seguro que deseas salir?', texto: 'Está a punto de salir del sistema', afirmacion: 'Si, salir!'}, async (i) =>{
 
+        
+        if (i) {
+          
+          localStorage.removeItem('rhomio')
+
+              setTimeout(() => {
+                  router.replace('Login')
+              }, 1000);
+
+
+              // let b = await axios.post(`${IP}:${PUERTO}/api/login/cerrarsesion`, f, this.$store.state.token)
+              // console.log(b.data)
+          }
+      })
+
+    },
   },
   plugins: [vuexPersist.plugin],
   modules: {
