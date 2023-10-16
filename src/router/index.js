@@ -58,7 +58,7 @@ router.beforeEach((to, from, next) =>{
   if (autorizado && !usuario) {
     next('login')
   }else if(!autorizado && usuario){
-    next('Dash')
+    next('Registro')
   }else{
     next()
   }
